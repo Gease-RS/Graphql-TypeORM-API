@@ -36,6 +36,15 @@ import {
       return true
     }
 
+    @Mutation(() => Boolean)
+    async  updateProduct(
+      @Arg("id", () => Int) id: number,
+      @Arg("fields", () => ProductInput) fields: ProductInput
+      ) {
+        await Product.update({id}, fields)
+        return true
+      }
+
     @Query(() => [Product])
         products() {
             return Product.find();

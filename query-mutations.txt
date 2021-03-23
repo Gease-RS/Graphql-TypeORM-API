@@ -10,3 +10,22 @@ mutation {
   }
 }
 
+####
+query {
+	products {
+    id
+    name
+  }
+}
+
+####
+mutation {
+	deleteProduct(id: 2)
+}
+
+mutation { 
+    updateProduct(id:1, fields: {
+        name: "",
+        quantity: 30
+    })
+}
