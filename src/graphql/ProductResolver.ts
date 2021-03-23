@@ -5,7 +5,8 @@ import {
     Arg,
     Query,
     InputType,
-    Field
+    Field,
+    Int
   } from "type-graphql"
   
   @InputType()
@@ -27,6 +28,12 @@ import {
       const newProduct = Product.create(variables)
       console.log(newProduct)
       return await newProduct.save()
+    }
+
+    @Mutation(() => Boolean)
+    async deleteProduct(@Arg("id", () => Int) id: number) {
+      await Product.delete(id)
+      return true
     }
 
     @Query(() => [Product])

@@ -1,0 +1,12 @@
+mutation {
+  createProduct(variables: {
+    name: "Drone Phantom 4",
+    quantity: 5
+  }) {
+    id
+    name
+    quantity
+    createdAt
+  }
+}
+
