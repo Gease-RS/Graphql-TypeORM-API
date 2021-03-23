@@ -3,3 +3,15 @@ yarn add express apollo-server-express pg typeorm reflect-metadata type-graphql
 yarn add -D typescript ts-node @types/express @types/node nodemon
 
 npx tsc --init
+
+#########################################
+ @Mutation(() => Boolean)
+    async createProduct(
+      @Arg("name") name: string,
+      @Arg("quantity") quantity: number
+    ) {
+      await Product.insert({name, quantity})
+      return true
+    }
+
+#########################################

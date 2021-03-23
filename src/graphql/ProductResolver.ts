@@ -1,20 +1,37 @@
+import { Product } from './../model/Product';
 import {
     Resolver,
     Mutation,
-    Arg
-  } from "type-graphql";
-  import { Product } from "../model/Product";
+    Arg,
+    Query,
+    InputType,
+    Field
+  } from "type-graphql"
   
+  @InputType()
+  class ProductInput {
+      @Field()
+      name!: string
+
+      @Field()
+      quantity!: number
+  }
+
   @Resolver()
   export class ProductResolver {
 
-    @Mutation(() => Boolean)
+    @Mutation(() => Product)
     async createProduct(
-      @Arg("name") name: string,
-      @Arg("quantity") quantity: number
+      @Arg("variables", () => ProductInput) variables: ProductInput
     ) {
-      await Product.insert({name, quantity})
-      return true
+      const newProduct = Product.create(variables)
+      console.log(newProduct)
+      return await newProduct.save()
     }
+
+    @Query(() => [Product])
+        products() {
+            return Product.find();
+        }
 
   }

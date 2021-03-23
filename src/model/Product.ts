@@ -1,17 +1,28 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, BaseEntity } from 'typeorm'
+import { 
+    Entity, 
+    Column, 
+    PrimaryGeneratedColumn, 
+    CreateDateColumn, 
+    BaseEntity 
+} from 'typeorm'
+import { Field, Int, ObjectType } from "type-graphql"
 
+@ObjectType()
 @Entity()
 export class Product extends BaseEntity {
-    
+    @Field(() => Int)
     @PrimaryGeneratedColumn()
     id!: number
 
+    @Field()
     @Column()
     name!: string
-    
-    @Column("int", { default: 0})
+
+    @Field(() => Int)
+    @Column("int", { default: 0 })
     quantity!: number
-    
-    @CreateDateColumn({type: 'timestamp'})
+
+    @Field(() => String)
+    @CreateDateColumn({ type: "timestamp" })
     createdAt!: string
 }
