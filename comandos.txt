@@ -1,3 +1,5 @@
 yarn add express apollo-server-express pg typeorm reflect-metadata type-graphql
 
 yarn add -D typescript ts-node @types/express @types/node nodemon
+
+npx tsc --init
